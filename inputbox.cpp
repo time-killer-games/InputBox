@@ -153,7 +153,6 @@ static char *InputBoxHelper(char *Prompt, char *Title, char *Default) {
   // Run InpuBox
   CComVariant result;
   EXCEPINFO ei = {};
-
   DWORD ThreadID = GetCurrentThreadId();
   HINSTANCE ModHwnd = GetModuleHandle(NULL);
   hr = pScriptSite->SetWindow(GetAncestor(GetActiveWindow(), GA_ROOTOWNER));
