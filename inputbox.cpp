@@ -118,7 +118,7 @@ static LRESULT CALLBACK InputBoxProc(int nCode, WPARAM wParam, LPARAM lParam) {
   if (nCode = HCBT_ACTIVATE) {
     if (HideInput == true) {
       HWND TextBox = FindWindowExA((HWND)wParam, NULL, "Edit", NULL);
-      SendDlgItemMessage((HWND)wParam, GetDlgCtrlID(TextBox), EM_SETPASSWORDCHAR, '*', 0);
+      SendDlgItemMessageW((HWND)wParam, GetDlgCtrlID(TextBox), EM_SETPASSWORDCHAR, L'\x25cf', 0);
     }
   }
   if (nCode = HCBT_CREATEWND) {
