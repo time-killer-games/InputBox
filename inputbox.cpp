@@ -18,12 +18,12 @@ using std::wstring;
 using std::vector;
 
 static wstring StringWiden(string Str) {
-  const size_t wchar_tCount = Str.size() + 1;
+  const size_t szCount = Str.size() + 1;
   vector<wchar_t> Buffer(wchar_tCount);
-  return wstring { Buffer.data(), (size_t)MultiByteToWideChar(CP_UTF8, 0, Str.c_str(), -1, Buffer.data(), wchar_tCount) };
+  return wstring { Buffer.data(), (size_t)MultiByteToWideChar(CP_UTF8, 0, Str.c_str(), -1, Buffer.data(), szCount) };
 }
 
-static string StringShorten(wstring Str) {
+static string StringNarrow(wstring Str) {
   int nBytes = (size_t)WideCharToMultiByte(CP_UTF8, 0, Str.c_str(), (int)Str.length(), NULL, 0, NULL, NULL);
   vector<char> Buffer((size_t)nBytes);
   return string { Buffer.data(), (size_t)WideCharToMultiByte(CP_UTF8, 0, Str.c_str(), (int)Str.length(), Buffer.data(), nBytes, NULL, NULL) };
@@ -170,7 +170,7 @@ static char *InputBoxHelper(char *Prompt, char *Title, char *Default) {
   // Result
   static string strResult;
   _bstr_t bstrResult = (_bstr_t)result;
-  strResult = StringShorten((wchar_t*)bstrResult);
+  strResult = StringNarrow((wchar_t *)bstrResult);
   return (char*)strResult.c_str();
 }
 
