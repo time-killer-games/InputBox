@@ -19,7 +19,7 @@ using std::vector;
 
 static wstring StringWiden(string Str) {
   const size_t szCount = Str.size() + 1;
-  vector<wchar_t> Buffer(wchar_tCount);
+  vector<wchar_t> Buffer(szCount);
   return wstring { Buffer.data(), (size_t)MultiByteToWideChar(CP_UTF8, 0, Str.c_str(), -1, Buffer.data(), szCount) };
 }
 
